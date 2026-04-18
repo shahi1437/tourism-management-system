@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-3">All Destinations</h2>
+
+<!-- SEARCH -->
+<form method="GET" class="mb-4">
+    <input type="text" name="q" class="form-control" placeholder="Search destination...">
+</form>
+
+<div class="row">
+    {% for d in destinations %}
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow-sm">
+
+            {% if d.image %}
+            <img src="{{ d.image.url }}" class="card-img-top" style="height:200px; object-fit:cover;">
+            {% endif %}
+
+            <div class="card-body">
+                <h5>{{ d.name }}</h5>
+
+                <p><strong>Location:</strong> {{ d.location }}</p>
+
+                <p>{{ d.description|truncatewords:12 }}</p>
+
+                <a href="/destinations/{{ d.id }}/" class="btn btn-outline-primary btn-sm">
+                    View Details
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+    {% empty %}
+        <p>No destinations found.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

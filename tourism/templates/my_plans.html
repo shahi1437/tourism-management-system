@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>My Travel Plans</h2>
+
+<div class="row">
+
+    {% for plan in plans %}
+    <div class="col-md-4 mb-4">
+
+        <div class="card p-3 shadow-sm">
+
+            <h5>Travel Date: {{ plan.travel_date }}</h5>
+
+            <p><strong>Destinations:</strong></p>
+            <ul>
+                {% for d in plan.destinations.all %}
+                    <li>{{ d.name }}</li>
+                {% endfor %}
+            </ul>
+
+            <a href="/plan/{{ plan.id }}/" class="btn btn-primary btn-sm">
+                View Summary
+            </a>
+
+        </div>
+
+    </div>
+    {% empty %}
+        <p>No plans created yet.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

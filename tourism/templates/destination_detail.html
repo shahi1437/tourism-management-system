@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{ destination.name }}</h2>
+
+<p><strong>Location:</strong> {{ destination.location }}</p>
+
+{% if destination.image %}
+<img src="{{ destination.image.url }}" class="img-fluid mb-3">
+{% endif %}
+
+<p>{{ destination.description }}</p>
+
+<hr>
+
+<h4>Reviews</h4>
+
+{% for r in destination.review_set.all %}
+    <div class="card p-2 mb-2">
+        <strong>{{ r.user.username }}</strong>
+        <p>Rating: {{ r.rating }}/5</p>
+        <p>{{ r.comment }}</p>
+    </div>
+{% empty %}
+    <p>No reviews yet.</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    <a href="/review/{{ destination.id }}/" class="btn btn-warning btn-sm">
+        Add Review
+    </a>
+{% endif %}
+
+{% endblock %}

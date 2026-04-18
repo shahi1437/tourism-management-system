@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Create Travel Plan</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Travel Date</label>
+        <input type="date" name="date" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Select Destinations</label>
+
+        {% for d in destinations %}
+            <div class="form-check">
+                <input type="checkbox" name="destinations" value="{{ d.id }}" class="form-check-input">
+                <label class="form-check-label">{{ d.name }}</label>
+            </div>
+        {% endfor %}
+    </div>
+
+    <button class="btn btn-primary">Create Plan</button>
+
+</form>
+
+{% endblock %}

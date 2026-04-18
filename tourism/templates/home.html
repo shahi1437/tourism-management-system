@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-center mb-4">
+    <h1>Explore Tourism</h1>
+    <p>Discover the best destinations</p>
+</div>
+
+<h3 class="mb-3">Popular Destinations</h3>
+
+<div class="row">
+    {% for d in destinations %}
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow-sm">
+
+            {% if d.image %}
+            <img src="{{ d.image.url }}" class="card-img-top" style="height:200px; object-fit:cover;">
+            {% endif %}
+
+            <div class="card-body">
+                <h5>{{ d.name }}</h5>
+                <p>{{ d.location }}</p>
+
+                <a href="/destinations/{{ d.id }}/" class="btn btn-primary btn-sm">
+                    View Details
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+<a href="/create-plan/" class="btn btn-warning mb-3">
+    Create Travel Plan
+</a>

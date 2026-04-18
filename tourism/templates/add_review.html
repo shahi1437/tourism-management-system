@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Review: {{ destination.name }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Rating (1-5)</label>
+    <input type="number" name="rating" min="1" max="5" class="form-control mb-2" required>
+
+    <label>Comment</label>
+    <textarea name="comment" class="form-control mb-3" required></textarea>
+
+    <button class="btn btn-primary">Submit</button>
+
+</form>
+
+{% endblock %}

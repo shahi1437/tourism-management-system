@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Travel Plan Summary</h2>
+
+<p><strong>Date:</strong> {{ plan.travel_date }}</p>
+
+<h4>Destinations:</h4>
+
+<ul>
+    {% for d in plan.destinations.all %}
+        <li>{{ d.name }} ({{ d.location }})</li>
+    {% endfor %}
+</ul>
+
+<a href="/" class="btn btn-success">Back Home</a>
+
+{% endblock %}
